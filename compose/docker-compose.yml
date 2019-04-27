@@ -1,0 +1,22 @@
+version: '3.4'
+services:
+  onepage:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: ${DOCKER_IMAGE}
+    expose:
+      - 8081
+    networks:
+      - web
+    labels:
+      - "traefik.docker.network=web"
+      - "traefik.enable=true"
+      - "traefik.basic.frontend.rule=Host:${ONEPAGE_DOMAIN}"
+      - "traefik.basic.port=8081"
+      - "traefik.basic.protocol=http"
+
+networks:
+  web:
+    external: true
+
