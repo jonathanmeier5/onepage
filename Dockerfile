@@ -1,3 +1,7 @@
 FROM python:3.7-stretch
 
-CMD ["python", "-m", "http.server", "8000"]
+ENV HOME /var/www/onepage.jonathanmeier.io
+RUN mkdir -p $HOME
+WORKDIR $HOME
+COPY ./src $HOME/
+CMD ["python", "-m", "http.server", "8081"]
