@@ -1,7 +1,7 @@
-FROM python:3.7-stretch
+FROM nginx 
 
 ENV HOME /var/www/onepage.jonathanmeier.io
 RUN mkdir -p $HOME
 WORKDIR $HOME
+COPY files/ /
 COPY ./src $HOME/
-CMD ["python", "-m", "http.server", "8081"]
